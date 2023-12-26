@@ -4,13 +4,18 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using TodoProject.Data;
+using TodoProject.Repositories;
 using TodoProject.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpContextAccessor();
 
 // Add services to the container.
 builder.Services.AddSingleton<IPasswordManager, PasswordManager>();
-builder.Services.AddSingleton<IJwtTokenManager, JwtTokenManager>();
+builder.Services.AddScoped<IJwtTokenManager, JwtTokenManager>();
+
+// Add repositories to the container.
+builder.Services.AddScoped<IAuthRepo, AuthRepo>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -83,6 +88,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+app.UseCustomAuthorization();
 
 app.MapControllers();
 
