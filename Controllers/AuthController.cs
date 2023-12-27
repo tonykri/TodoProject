@@ -21,7 +21,7 @@ namespace TodoProject.Controllers
             try
             {
                 _authRepo.Signup(userData);
-                return NoContent();
+                return Ok("User signed up succesfully");
             }catch (Exception ex)
             {
                 return BadRequest(ex.Message);
@@ -46,7 +46,7 @@ namespace TodoProject.Controllers
         public IActionResult Logout()
         {
             _authRepo.Logout();
-            return NoContent();
+            return Ok("User logged out succesfuly");
         }
     }
 }

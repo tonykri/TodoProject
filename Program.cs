@@ -56,8 +56,8 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<ApplicationDbContext>(
     options =>
     {
-        //options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringG"));
-        options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringT"));
+        options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringG"));
+        //options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringT"));
     }
 );
 
