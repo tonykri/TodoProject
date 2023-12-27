@@ -31,5 +31,6 @@ namespace TodoProject.Data
         public DbSet<ApplicationUser> Users { get; set; }
         public DbSet<TodoList> TodoLists { get; set; }
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<TokenBlackList> TokenBlackList { get; set; }
     }
 }
