@@ -20,7 +20,8 @@ public class AuthRepo: IAuthRepo
     public void Logout()
     {
         var token = _jwtTokenManager.GetToken();
-        if(token is null) return;
+        if(token is null) 
+            return;
         _applicationDbContext.TokenBlackList.Add(new TokenBlackList{Token = token});
         _applicationDbContext.SaveChanges();
     }
