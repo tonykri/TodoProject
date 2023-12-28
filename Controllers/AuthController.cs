@@ -6,7 +6,7 @@ using TodoProject.Repositories;
 namespace TodoProject.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("auth")]
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepo _authRepo;

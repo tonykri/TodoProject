@@ -51,4 +51,10 @@ public class JwtTokenManager : IJwtTokenManager
         return true;
     }
 
+    public string GetCurrentUserId() {
+        JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
+        var userId = handler.ReadJwtToken(GetToken().Substring(7)).Claims.ElementAt(0).Value.ToString();
+        return userId;
+    }
+
 }
