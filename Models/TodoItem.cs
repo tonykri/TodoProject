@@ -7,7 +7,7 @@ namespace TodoProject.Models
         [Key]
         public Guid Id { get; set; } = Guid.NewGuid();
         public string Title { get; set; }
-        public bool IsCompleted {  get; set; }
+        public bool IsCompleted {  get; set; } = false;
 
         public Guid TodoListId { get; set; }
         public TodoList TodoList { get; set; }

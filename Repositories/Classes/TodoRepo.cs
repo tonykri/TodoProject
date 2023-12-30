@@ -1,4 +1,5 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using Microsoft.EntityFrameworkCore;
 using TodoProject.Data;
 using TodoProject.Dto;
 using TodoProject.Models;
@@ -23,7 +24,7 @@ namespace TodoProject.Repositories.Classes
             var userId = _jwtTokenManager.GetCurrentUserId();
 
             // grab todo lists based on the current user id
-            return _applicationDbContext.TodoLists.Where(t => t.UserId == Guid.Parse(userId))!.ToList();
+            return _applicationDbContext.TodoLists.Include(t => t.TodoItems).Where(t => t.UserId == Guid.Parse(userId)).ToList();
 
         }
 
