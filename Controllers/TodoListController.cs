@@ -27,7 +27,6 @@ namespace TodoProject.Controllers
         }
 
         [HttpGet]
-        [Route("")]
         public ActionResult<List<TodoList>> GetTodos() {
             try
             {
@@ -52,7 +51,7 @@ namespace TodoProject.Controllers
             }
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id:guid}")]
         public ActionResult<TodoList> GetTodoById(Guid id) 
         {
             try
@@ -65,7 +64,7 @@ namespace TodoProject.Controllers
             }
         }
 
-        [HttpPut("id")]
+        [HttpPut("{id:guid}")]
         public ActionResult<TodoList> Update(Guid id, TodoListDto updatedList)
         {
             try
@@ -78,7 +77,7 @@ namespace TodoProject.Controllers
             }
         }
 
-        [HttpDelete("id")]
+        [HttpDelete("{id:guid}")]
         public ActionResult Delete(Guid id)
         {
             try
