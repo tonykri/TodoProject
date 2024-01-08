@@ -20,7 +20,8 @@ namespace TodoProject.Controllers
             try{
                 var item = _todoItemRepo.Get(id, iid);
                 return Ok(item);
-            }catch(Exception ex){
+            }
+            catch(Exception ex){
                 return BadRequest(ex.Message);
             }
         }

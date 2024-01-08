@@ -29,8 +29,10 @@ public class AuthRepo: IAuthRepo
     public string Login(UserLoginDto userData)
     {
         var user = _applicationDbContext.Users.FirstOrDefault(u => u.Email.Equals(userData.Email));
+        
         if(user is null)
             throw new Exception("User not found");
+        
         if(!_passwordManager.VerifyPasswordHash(userData.Password, user.PasswordHash, user.PasswordSalt))
             throw new Exception("Invalid password");
         
@@ -41,7 +43,9 @@ public class AuthRepo: IAuthRepo
     {
         if (_applicationDbContext.Users.Any(u => u.Email.Equals(userData.Email)))
             throw new Exception("An user with current email exists already");
+        
         _passwordManager.CreatePasswordHash(userData.Password, out byte[] passwordHash, out byte[] passwordSalt);
+        
         ApplicationUser user = new ApplicationUser{
             FirstName = userData.FirstName,
             LastName = userData.LastName,
