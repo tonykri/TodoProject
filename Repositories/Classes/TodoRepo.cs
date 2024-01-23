@@ -25,7 +25,6 @@ namespace TodoProject.Repositories.Classes
 
             // grab todo lists based on the current user id
             return _applicationDbContext.TodoLists.Include(t => t.TodoItems).Where(t => t.UserId == Guid.Parse(userId)).ToList();
-
         }
 
         public TodoList GetById(Guid id)  // TODO: maybe do one more get for name since it makes more sense?

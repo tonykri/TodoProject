@@ -14,11 +14,6 @@ namespace TodoProject.Controllers
     [Authorize]
     public class TodoListController : ControllerBase
     {
-        //GET /todos
-        //POST /todos
-        //GET /todos/:id
-        //PUT /todos/:id
-        //DELETE /todos/:id
 
         ITodoRepo _todoRepo;
 
@@ -27,19 +22,19 @@ namespace TodoProject.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<TodoList>> GetTodos() {
+        public IActionResult GetTodos() {
             try
             {
                 return Ok(_todoRepo.GetAll());
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
         [HttpPost]
-        public ActionResult AddTodo(TodoListDto todoList) {
+        public IActionResult AddTodo(TodoListDto todoList) {
             try
             {
                 _todoRepo.Insert(todoList);
@@ -47,12 +42,12 @@ namespace TodoProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
         [HttpGet("{id:guid}")]
-        public ActionResult<TodoList> GetTodoById(Guid id) 
+        public IActionResult GetTodoById(Guid id) 
         {
             try
             {
@@ -60,12 +55,12 @@ namespace TodoProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
         [HttpPut("{id:guid}")]
-        public ActionResult<TodoList> Update(Guid id, TodoListDto updatedList)
+        public IActionResult Update(Guid id, TodoListDto updatedList)
         {
             try
             {
@@ -73,12 +68,12 @@ namespace TodoProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
         [HttpDelete("{id:guid}")]
-        public ActionResult Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
             try
             {
@@ -87,7 +82,7 @@ namespace TodoProject.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 

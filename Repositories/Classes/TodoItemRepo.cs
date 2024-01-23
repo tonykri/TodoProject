@@ -38,7 +38,7 @@ namespace TodoProject.Repositories.Classes
             if(todoList is null) throw new Exception("Couldn't find todo list");
 
             var todoItem = _applicationDbContext.TodoItems.FirstOrDefault(item => item.Id == iid && item.TodoListId == id);
-            if(todoItem is null) throw new Exception("Couldn't find todo item");
+            if (todoItem is null) throw new Exception("Couldn't find todo item");
 
             _applicationDbContext.Remove(todoItem);
             _applicationDbContext.SaveChanges();

@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using TodoProject.Dto;
 using TodoProject.Repositories.Interfaces;
@@ -21,7 +22,7 @@ namespace TodoProject.Controllers
                 var item = _todoItemRepo.Get(id, iid);
                 return Ok(item);
             }catch(Exception ex){
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
@@ -29,9 +30,9 @@ namespace TodoProject.Controllers
         public IActionResult Create(Guid id, [FromBody] TodoItemCreateDto todoItemCreateDto){
             try{
                 _todoItemRepo.Create(id, todoItemCreateDto);
-                return Ok();
+                return Ok("Added succesfuly");
             }catch(Exception ex){
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
@@ -41,7 +42,7 @@ namespace TodoProject.Controllers
                 var item = _todoItemRepo.Update(id, iid, todoItemUpdateDto);
                 return Ok(item);
             }catch(Exception ex){
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
 
@@ -49,9 +50,9 @@ namespace TodoProject.Controllers
         public IActionResult Delete(Guid id, Guid iid){
             try{
                 _todoItemRepo.Delete(id, iid);
-                return Ok();
+                return Ok("Deleted Succesfuly");
             }catch(Exception ex){
-                return BadRequest(ex.Message);
+                return NotFound(ex.Message);
             }
         }
     }
